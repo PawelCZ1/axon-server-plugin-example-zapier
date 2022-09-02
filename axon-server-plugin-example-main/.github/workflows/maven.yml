@@ -1,0 +1,22 @@
+name: Axon Server Plugin - Example
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3.3.0
+        with:
+          distribution: 'adopt'
+          java-version: 8
+          cache: 'maven'
+
+      - name: Build and verify
+        run: mvn -B -U clean verify
